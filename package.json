@@ -1,0 +1,34 @@
+{
+	"name": "ripo-schema",
+	"version": "0.0.0",
+	"description": "整合性と均一性のあるリポジトリの為、ディレクトリスキーマと利用するJSONSchemaを定める",
+	"author": "Rintaro Osumi <0sumirintaro@gmail.com>",
+	"license": "MIT",
+	"homepage": "https://github.com/rin00159/ripo-schema#readme",
+	"bugs": {
+		"url": "https://github.com/rin00159/ripo-schema/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rin00159/ripo-schema.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"math",
+		"openmath",
+		"json",
+		"jsonschema"
+	],
+	"files": [
+		"LICENSE",
+		"README.md",
+		"package.json",
+		"DIRDESC.yaml",
+		"src"
+	],
+	"exports": {
+		"./openmath.json": "./src/openmath.json"
+	}
+}

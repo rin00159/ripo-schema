@@ -1,0 +1,175 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"description": "schemaは`CycloneDX 1.6`を`ripo-schema`に基づいてさらに制約したschema",
+	"allOf": [
+		{
+			"$ref": "./vendor/bom-1.6.schema.json",
+			"$comment": "`http://cyclonedx.org/schema/bom-1.6.schema.json`を使用したいところだが、vscodeのバリデーターではどうしても解決できなかった為"
+		},
+		{
+			"type": "object",
+			"unevaluatedProperties": false,
+			"required": ["metadata"],
+			"properties": {
+				"$schema": {},
+				"bomFormat": {},
+				"specVersion": {},
+				"metadata": {
+					"type": "object",
+					"required": ["component"],
+					"unevaluatedProperties": false,
+					"properties": {
+						"component": {
+							"type": "object",
+							"unevaluatedProperties": false,
+							"properties": {
+								"type": {},
+								"licenses": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"unevaluatedProperties": false,
+										"properties": { "license": {} }
+									}
+								},
+								"name": {}
+							}
+						}
+					}
+				},
+				"components": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"unevaluatedProperties": false,
+						"properties": {
+							"type": {},
+							"name": {},
+							"licenses": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"unevaluatedProperties": false,
+									"properties": {
+										"license": {
+											"type": "object",
+											"unevaluatedProperties": false,
+											"properties": {
+												"id": {},
+												"url": {}
+											}
+										}
+									}
+								}
+							},
+							"pedigree": {
+								"type": "object",
+								"unevaluatedProperties": false,
+								"properties": {
+									"ancestors": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"unevaluatedProperties": false,
+											"properties": {
+												"type": {},
+												"name": {},
+												"description": {},
+												"copyright": {},
+												"authors": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"unevaluatedProperties": false,
+														"properties": {
+															"name": {}
+														}
+													}
+												},
+												"licenses": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"unevaluatedProperties": false,
+														"properties": {
+															"license": {
+																"type": "object",
+																"unevaluatedProperties": false,
+																"properties": {
+																	"id": {},
+																	"url": {}
+																}
+															}
+														}
+													}
+												},
+												"externalReferences": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"unevaluatedProperties": false,
+														"properties": {
+															"type": {},
+															"url": {}
+														}
+													}
+												}
+											}
+										}
+									},
+									"patches": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"unevaluatedProperties": false,
+											"properties": {
+												"type": {},
+												"resolves": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"unevaluatedProperties": false,
+														"properties": {
+															"type": {},
+															"description": {}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"definitions": {
+					"type": "object",
+					"unevaluatedProperties": false,
+					"properties": {
+						"standards": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"unevaluatedProperties": false,
+								"properties": {
+									"requirements": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"unevaluatedProperties": false,
+											"required": ["title"],
+											"properties": {
+												"title": {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}

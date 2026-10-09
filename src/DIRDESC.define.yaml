@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
+recursive-strict: true
+contents:
+  - type: file
+    name: ripotask.json
+    description: パッケージ情報
+  - type: file
+    name: package.json
+    description: パッケージ情報
+  - type: file
+    name: package.cdx.json
+    description: 補足パッケージ情報
+    optional: true
+    data:
+      schema: json
+      contain: {
+        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
+      }
+  - type: file
+    name: codemeta.json
+    #fix 具体的にサポートするプロパティを決めてない。
+    description: 補足パッケージ情報
+    optional: true
+    data:
+      schema: json
+      contain: {
+        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/codemeta.schema.json"
+      }
+  - type: file
+    name: README.md
+    description: 利用者向けの説明用文書。`file:schema/unischema.yaml`に記されたschemaを元に生成する想定。自動生成も可能だと考えている。
+    detail: |
+      詳細:実リポジトリにおける`./package.json`と`./package.cdx.json`と`./codemeta.json` を情報源に生成する想定。
+      理由:README.md を真に情報源にするのは望ましくない。
+      補足:[整合性のための定義](../../docs/package.md)
+  - type: file
+    name: LICENSE
+    description: ライセンス情報
+  - type: file
+    name: .gitignore
+    description: git設定の一部
+  - type: file
+    name: DIRDESC.yaml
+    description: ディレクトリ構造説明
+    optional: true
+    data:
+      schema: json
+      contain: {
+        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
+      }
+  - type: directory
+    name: src
+    description: sourceディレクトリ
+  - type: directory
+    name: example
+    description: example用ファイルなど
+    optional: true
+  - type: directory
+    name: dist
+    description: コンパイル出力先
+    optional: true
+  - type: directory
+    name: docs
+    description: documentsディレクトリ
+    optional: true

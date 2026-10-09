@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=/Users/rin/mydev/schema/unischema/src/unischema.json
+contents:
+  - name: DIRDESC.yaml
+    position: ディレクトリ構成と説明
+    priority: 0
+  - name: package.json
+    position: 基本的なパッケージの情報
+    priority: 1
+  - name: package.cdx.json
+    position: 上記ではカバーできない、情報を記す。example:派生元,ファイル単位の詳しい構成,適用したパッチ情報,ライセンス,specの明記など
+    priority: 2
+    schema: {
+      "/metadata/component/name":{"file":"package.json","pointer":"/name"}
+    }
+  - name: codemeta.json
+    position: 上記ではカバーできない、情報を記す。example:研究成果としての引用・資金・人物識別・発見可能性
+    priority: 3

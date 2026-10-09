@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
+recursive-strict: true
+contents:
+  - type: directory
+    name: docs
+  - type: directory
+    name: src
+    contents:
+      - type: file
+        name: DIRDESC.define.yaml
+        description: "`ripo-schema`リポジトリが制約する、プロジェクトのディレクトリ構造"
+      - type: directory
+        name: schema
+        contents:
+          - type: directory
+            name: vendor
+            description: ベンダーからinstallしたままのschema定義
+          - type: file
+            name: unischema.yaml
+            description: ディレクトリスキーマで利用される`JSONSchemaのunischema定義`
+          - type: file
+            name: codemeta.schema.json
+            description: ディレクトリスキーマで利用される`CodeMeta`のJSONSchema
+          - type: file
+            name: package.cdx.schema.json
+            description: ディレクトリスキーマで利用される`CycloneDX 1.6`のJSONSchema
