@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
-recursive-strict: true
+strict: recursive
 contents:
   - type: directory
     name: docs
@@ -15,6 +15,12 @@ contents:
           - type: directory
             name: vendor
             description: ベンダーからinstallしたままのschema定義
+          - type: directory
+            name: withRipoLinks
+            contents:
+              - type: file
+                name: package.schema.json
+                description: ../package.schema.json からさらにリポジトリ等へのリンクを必須化
           - type: file
             name: unischema.yaml
             description: ディレクトリスキーマで利用される`JSONSchemaのunischema定義`
@@ -24,3 +30,6 @@ contents:
           - type: file
             name: package.cdx.schema.json
             description: ディレクトリスキーマで利用される`CycloneDX 1.6`のJSONSchema
+          - type: file
+            name: package.schema.json
+            description: ディレクトリスキーマで利用される`package.json`のJSONSchema。特定のプロパティを必須に資する目的で設定

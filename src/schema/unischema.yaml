@@ -1,17 +1,40 @@
 # yaml-language-server: $schema=/Users/rin/mydev/schema/unischema/src/unischema.json
+#
+# position の規則
+#   形式: 「<カテゴリ>: <担当範囲>」
+#   カテゴリ(閉じた集合・1つだけ選ぶ):
+#     layout    ディレクトリ構成のみ。ファイル内容の情報は持たない
+#     identity  パッケージの同定情報。package.json とその拡張(package.cdx.json)が担う
+#     academic  研究・学術利用のための情報
+#   所有の原則:
+#     - 情報項目の正本(owner)は1ファイルのみ。
+#     - 他ファイルで必要な値は、参照する側のファイルの schema にポインタで書く。値は複製しない。
+# priority:
+#   情報を割り当てる優先度。
+#   新しくパッケージに関する情報を構造化して配置したくなった時に、
+#   小さい値から順に配置先を検討する。
+#   ただし、構造化・普及 を満たす既存の定義(CycloneDX, SPDX, codemeta など)が
+#   該当する情報を持つ場合は、priority より既存の定義を優先する。
+#
 contents:
   - name: DIRDESC.yaml
-    position: ディレクトリ構成と説明
+    position: "layout: パッケージのディレクトリ構成と各エントリの配置目的を宣言する"
     priority: 0
+
   - name: package.json
-    position: 基本的なパッケージの情報
+    position: "identity: パッケージの基本情報(名前・版・説明・リポジトリ・エントリポイント)。license は正本を package.cdx.json に持ち、ここでは参照する"
     priority: 1
+    schema: {
+      "/license": {"file": "package.cdx.json", "pointer": "/metadata/component/licenses"}
+    }
+
   - name: package.cdx.json
-    position: 上記ではカバーできない、情報を記す。example:派生元,ファイル単位の詳しい構成,適用したパッチ情報,ライセンス,specの明記など
+    position: "identity: package.json の拡張。自パッケージの構造化ライセンスの正本、派生元、ファイル単位の構成、適用したパッチ、準拠仕様の明記、上流コンポーネントの情報を持つ"
     priority: 2
     schema: {
-      "/metadata/component/name":{"file":"package.json","pointer":"/name"}
+      "/metadata/component/name": {"file": "package.json", "pointer": "/name"}
     }
+
   - name: codemeta.json
-    position: 上記ではカバーできない、情報を記す。example:研究成果としての引用・資金・人物識別・発見可能性
+    position: "academic: 研究成果としての引用・資金・人物識別子・学術検索での発見可能性。同定情報は package.json を参照する"
     priority: 3

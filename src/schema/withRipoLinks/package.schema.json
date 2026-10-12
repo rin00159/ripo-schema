@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "../package.schema.json"
+		}
+	],
+	"properties": {
+		"homepage": {
+			"type": "string",
+			"format": "uri"
+		},
+		"bugs": {
+			"type": "object",
+			"properties": {
+				"url": {
+					"type": "string",
+					"format": "uri"
+				}
+			},
+			"required": ["url"]
+		},
+		"repository": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				}
+			},
+			"required": ["type", "url"]
+		}
+	},
+	"required": ["homepage", "bugs", "repository"]
+}

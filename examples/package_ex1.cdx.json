@@ -1,0 +1,19 @@
+{
+	"$schema": "../src/schema/vendor/bom-1.6.schema.json",
+	"bomFormat": "CycloneDX",
+	"specVersion": "1.6",
+	"externalReferences": [
+		{
+			"type": "other",
+			"url": "https://claude.ai/share/9ddc0999-005c-46ec-b6c6-0bafc69f3764",
+			"comment": "方向性や原案以外の、Schemaのレビューや改善活動に利用"
+		}
+	],
+	"metadata": {
+		"component": {
+			"type": "library",
+			"name": "directory-jsonschema",
+			"licenses": [{ "license": { "id": "MIT" } }]
+		}
+	}
+}

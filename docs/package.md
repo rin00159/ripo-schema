@@ -43,16 +43,6 @@ patcheの制約が強く、`ancestor`からの参照も`patcheのindex参照`以
 
 現実的なプランは`patches`へ拡張プロパティを追加。
 なおプロパティが無視されても順当な情報の欠落のみなので安全
-### require props
-```json schema
-{
-	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
-	"bomFormat": "CycloneDX",
-	"specVersion": "1.6",
-
-    "components"?:Component[]
-}
-```
 ### examples
 ```json example
 {

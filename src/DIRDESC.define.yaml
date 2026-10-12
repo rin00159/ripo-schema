@@ -1,15 +1,20 @@
 # yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
-recursive-strict: true
+strict: recursive
 contents:
   - type: file
     name: ripotask.json
-    description: パッケージ情報
+    description: リポジトリ開発状況の管理
   - type: file
     name: package.json
     description: パッケージ情報
+    data:
+      schema: json
+      contain: {
+        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/withRipoLinks/package.schema.json",
+      }
   - type: file
     name: package.cdx.json
-    description: 補足パッケージ情報
+    description: パッケージ情報(package.json の構造化と補足)
     optional: true
     data:
       schema: json
@@ -19,7 +24,7 @@ contents:
   - type: file
     name: codemeta.json
     #fix 具体的にサポートするプロパティを決めてない。
-    description: 補足パッケージ情報
+    description: 学術利用のための補足情報
     optional: true
     data:
       schema: json
@@ -28,9 +33,9 @@ contents:
       }
   - type: file
     name: README.md
-    description: 利用者向けの説明用文書。`file:schema/unischema.yaml`に記されたschemaを元に生成する想定。自動生成も可能だと考えている。
+    description: 利用者向けの説明用文書。`file:./schema/unischema.yaml`のschemaに対応するjson を元に生成する。自動生成も可能。
     detail: |
-      詳細:実リポジトリにおける`./package.json`と`./package.cdx.json`と`./codemeta.json` を情報源に生成する想定。
+      詳細:実リポジトリにおける主に`./package.json`と`./package.cdx.json`と`./codemeta.json` を情報源に生成する想定。
       理由:README.md を真に情報源にするのは望ましくない。
       補足:[整合性のための定義](../../docs/package.md)
   - type: file
@@ -46,20 +51,28 @@ contents:
     data:
       schema: json
       contain: {
-        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
+        "$schema": "/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct"
       }
   - type: directory
     name: src
-    description: sourceディレクトリ
-  - type: directory
-    name: example
-    description: example用ファイルなど
-    optional: true
+    description: 配置:ソースコード
   - type: directory
     name: dist
-    description: コンパイル出力先
+    description: 配置:コンパイル成果物
     optional: true
   - type: directory
     name: docs
-    description: documentsディレクトリ
+    description: 配置:documents
+    optional: true
+  - type: directory
+    name: node_modules
+    description: 配置:依存ライブラリのコード
+    optional: true
+  - type: directory
+    name: examples
+    description: 配置:例示。テストに使われたり、検証の対象に入る場合もある。
+    optional: true
+  - type: directory
+    name: tests
+    description: 配置:テストコード
     optional: true
