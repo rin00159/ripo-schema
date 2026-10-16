@@ -1,5 +1,4 @@
-# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
-strict: recursive
+# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.st.json
 contents:
   - type: directory
     name: docs
@@ -20,7 +19,7 @@ contents:
             contents:
               - type: file
                 name: package.schema.json
-                description: ../package.schema.json からさらにリポジトリ等へのリンクを必須化
+                description: ../package.schema.json からさらにリポジトリ等へのリンクを必須化 
           - type: file
             name: unischema.yaml
             description: ディレクトリスキーマで利用される`JSONSchemaのunischema定義`

@@ -1,5 +1,4 @@
-# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct
-strict: recursive
+# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/schema/0.0.0/directory.schema.st.json
 contents:
   - type: file
     name: ripotask.json
@@ -11,25 +10,6 @@ contents:
       schema: json
       contain: {
         "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/withRipoLinks/package.schema.json",
-      }
-  - type: file
-    name: package.cdx.json
-    description: パッケージ情報(package.json の構造化と補足)
-    optional: true
-    data:
-      schema: json
-      contain: {
-        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
-      }
-  - type: file
-    name: codemeta.json
-    #fix 具体的にサポートするプロパティを決めてない。
-    description: 学術利用のための補足情報
-    optional: true
-    data:
-      schema: json
-      contain: {
-        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/codemeta.schema.json"
       }
   - type: file
     name: README.md
@@ -44,35 +24,49 @@ contents:
   - type: file
     name: .gitignore
     description: git設定の一部
-  - type: file
-    name: DIRDESC.yaml
-    description: ディレクトリ構造説明
-    optional: true
-    data:
-      schema: json
-      contain: {
-        "$schema": "/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct"
-      }
   - type: directory
     name: src
-    description: 配置:ソースコード
-  - type: directory
-    name: dist
-    description: 配置:コンパイル成果物
-    optional: true
-  - type: directory
-    name: docs
-    description: 配置:documents
-    optional: true
-  - type: directory
-    name: node_modules
-    description: 配置:依存ライブラリのコード
-    optional: true
-  - type: directory
-    name: examples
-    description: 配置:例示。テストに使われたり、検証の対象に入る場合もある。
-    optional: true
-  - type: directory
-    name: tests
-    description: 配置:テストコード
-    optional: true
+    description: 配置:ソースコードなど(パッケージ内で利用する静的アセット)
+
+items:
+  oneOf:
+    - type: file
+      name: package.cdx.json
+      description: パッケージ情報(package.json の構造化と補足)
+      data:
+        schema: json
+        contain: {
+          "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
+        }
+    - type: file
+      name: codemeta.json
+      #fix 具体的にサポートするプロパティを決めてない。
+      description: 学術利用のための補足情報
+      data:
+        schema: json
+        contain: {
+          "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/codemeta.schema.json"
+        }
+    - type: directory
+      name: dist
+      description: 配置:コンパイル成果物
+    - type: directory
+      name: docs
+      description: 配置:documents
+    - type: directory
+      name: node_modules
+      description: 配置:依存ライブラリのコード
+    - type: directory
+      name: examples
+      description: 配置:例示。テストに使われたり、検証の対象に入る場合もある。
+    - type: directory
+      name: tests
+      description: 配置:テストコード
+    - type: file
+      name: DIRDESC.yaml
+      description: ディレクトリ構造説明
+      data:
+        schema: json
+        contain: {
+          "$schema": "/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct"
+        }
