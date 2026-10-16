@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/schema/0.0.0/directory.schema.st.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rin00159/directory-jsonschema/refs/heads/main/schema/0.0.0/directory.schema.st.json
 contents:
   - type: file
     name: ripotask.json
@@ -7,8 +7,8 @@ contents:
     name: package.json
     description: パッケージ情報
     data:
-      schema: json
-      contain: {
+      format: json
+      containsProperties: {
         "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/withRipoLinks/package.schema.json",
       }
   - type: file
@@ -34,8 +34,8 @@ items:
       name: package.cdx.json
       description: パッケージ情報(package.json の構造化と補足)
       data:
-        schema: json
-        contain: {
+        format: json
+        containsProperties: {
           "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
         }
     - type: file
@@ -43,8 +43,8 @@ items:
       #fix 具体的にサポートするプロパティを決めてない。
       description: 学術利用のための補足情報
       data:
-        schema: json
-        contain: {
+        format: json
+        containsProperties: {
           "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/codemeta.schema.json"
         }
     - type: directory
@@ -66,7 +66,7 @@ items:
       name: DIRDESC.yaml
       description: ディレクトリ構造説明
       data:
-        schema: json
-        contain: {
-          "$schema": "/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.json#/$defs/struct"
+        format: json
+        containsProperties: {
+          "$schema": "https://raw.githubusercontent.com/rin00159/directory-jsonschema/refs/heads/main/schema/0.0.0/directory.schema.st.json"
         }

@@ -1,10 +1,4 @@
 #
-desc:package情報の整合性確保・構造化を目的としたschema設計。これを情報源にREADME.mdを生成することも可能
-#
-未決の点:
-
-softwareTypeは、公式contextで定義された2型に加え、WebApplication、MobileApplication、VideoGameも許可したままです。これはschema.orgのサブタイプです。厳密にSoftwareSourceCodeとSoftwareApplicationだけにしたい場合は、patternから削れば絞れます。
-ルートはadditionalProperties: trueのままです。JSON-LDではschema:付きの語などを足せるためですが、タイポを検出したいならfalseにできます。その場合はschema:*用のpatternPropertiesが必要になります。
 ## 基本情報
 ### context
 構造化されたパッケージの説明を記すには*package.json*だけでは十分に表現することができず、
@@ -12,6 +6,7 @@ softwareTypeは、公式contextで定義された2型に加え、WebApplication�
 
 この課題に対してpackage情報の整合性確保・構造化を目的に、私はこれを作った。
 ### spec
+desc:package情報の整合性確保・構造化を目的としたschema設計。これを情報源にREADME.mdを生成することも可能
 
 README.md を「完全かつ構造化された情報源」にを根拠にする為のデータモデルの確保。
 `diff`や`json-patch`のような役割とは被らない。
@@ -44,9 +39,10 @@ patcheの制約が強く、`ancestor`からの参照も`patcheのindex参照`以
 現実的なプランは`patches`へ拡張プロパティを追加。
 なおプロパティが無視されても順当な情報の欠落のみなので安全
 ### examples
+
 ```json example
 {
-	"$schema": "/Users/rin/mydev/schema/ripo-schema/src/package.cdx.schema.json",
+	"$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/package.cdx.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
 	"metadata": {

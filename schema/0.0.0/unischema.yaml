@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=/Users/rin/mydev/schema/unischema/src/unischema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rin00159/union-schema/refs/heads/main/schema/0.0.0/unischema.schema.json
 #
 # position の規則
 #   形式: 「<カテゴリ>: <担当範囲>」

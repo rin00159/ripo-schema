@@ -1,5 +1,5 @@
 {
-	"$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/withRipoLinks/package.schema.json",
+	"$schema": "./schema/0.0.0/withRipoLinks/package.schema.json",
 	"name": "ripo-schema",
 	"version": "0.0.0",
 	"description": "整合性と均一性のあるリポジトリの為、ディレクトリスキーマと利用するJSONSchemaを定める",

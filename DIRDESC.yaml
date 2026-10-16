@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=/Users/rin/mydev/schema/directory-jsonschema/src/directory.schema.st.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rin00159/directory-jsonschema/refs/heads/main/schema/0.0.0/directory.schema.st.json
 contents:
   - type: directory
     name: docs
