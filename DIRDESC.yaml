@@ -5,30 +5,12 @@ contents:
   - type: directory
     name: examples
     description: これら example-json.json は作成が必須ではないが作るのが望ましい
-    opContents:
-      - type: directory
-        name:
-          pattern: ^d+$
-        description: nameは対象の major-version
-        opContents:
-          - type: directory
-            name:
-              pattern: ^d+$
-            description: nameは対象の minor-version
-            opContents:
-              - type: file
-                name: 
-                  pattern: "^(?<SubexT>[^._]+)(?:_defs-(?<DeF>[^.]+))?\\.json-examples\\.json$"
-                description: |
-                  SubexT.json or NamE.SubexT.json//例:unischema.json
-                  とする時の命名パターン。
-                  SubexT:jsonファイルとしての拡張子,DeF:参照するJSONSchemaの$defs
   - type: directory
     name: src
     contents:
       - type: file
         name: DIRDESC.define.yaml
-        description: "`ripo-schema`リポジトリが制約する、プロジェクトのディレクトリ構造"
+        description: "リポジトリが制約する、プロジェクトのディレクトリ構造"
   - type: directory
     name: schema
     contents:
@@ -38,7 +20,6 @@ contents:
       - type: directory
         name: 
           pattern: "^(?<major>\\d+),(?<minor>\\d+),(?<patch>\\d+)$"
-        description: 基本的に 0.0.0 が始まり。0.0.0 -> 0.0.0 は破壊的変更が許される
         contents:
           - type: directory
             name: withRipoLinks
