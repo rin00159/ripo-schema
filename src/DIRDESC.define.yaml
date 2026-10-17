@@ -9,7 +9,7 @@ contents:
     data:
       format: json
       containsProperties: {
-        "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/withRipoLinks/package.schema.json",
+        "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/withRipoLinks/package.schema.json",
       }
   - type: file
     name: README.md
@@ -36,7 +36,7 @@ items:
       data:
         format: json
         containsProperties: {
-          "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/package.cdx.schema.json"
+          "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/package.cdx.schema.json"
         }
     - type: file
       name: codemeta.json
@@ -45,7 +45,7 @@ items:
       data:
         format: json
         containsProperties: {
-          "$schema": "/Users/rin/mydev/schema/ripo-schema/src/schema/codemeta.schema.json"
+          "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/codemeta.schema.json"
         }
     - type: directory
       name: dist

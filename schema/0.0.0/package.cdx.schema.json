@@ -2,9 +2,26 @@
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/package.cdx.schema.json",
 	"description": "schemaは`CycloneDX 1.6`を`ripo-schema`に基づいてさらに制約したschema",
+	"$defs": {
+		"issue": {
+			"type": "object",
+			"unevaluatedProperties": false,
+			"properties": {
+				"type": {},
+				"id": {},
+				"name": {},
+				"description": {},
+				"source": {
+					"type": "object",
+					"unevaluatedProperties": false,
+					"properties": { "name": {}, "url": {} }
+				}
+			}
+		}
+	},
 	"allOf": [
 		{
-			"$ref": "./vendor/bom-1.6.schema.json",
+			"$ref": "../vendor/bom-1.6.schema.json",
 			"$comment": "`http://cyclonedx.org/schema/bom-1.6.schema.json`を使用したいところだが、vscodeのバリデーターではどうしても解決できなかった為"
 		},
 		{
@@ -63,6 +80,33 @@
 									}
 								}
 							},
+							"releaseNotes": {
+								"type": "object",
+								"unevaluatedProperties": false,
+								"properties": {
+									"type": {},
+									"title": {},
+									"description": {},
+									"timestamp": {},
+									"tags": {},
+									"resolves": { "type": "array", "items": { "$ref": "#/$defs/issue" } },
+									"notes": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"unevaluatedProperties": false,
+											"properties": {
+												"locale": {},
+												"text": {
+													"type": "object",
+													"unevaluatedProperties": false,
+													"properties": { "contentType": {}, "content": {} }
+												}
+											}
+										}
+									}
+								}
+							},
 							"pedigree": {
 								"type": "object",
 								"unevaluatedProperties": false,
@@ -73,6 +117,7 @@
 											"type": "object",
 											"unevaluatedProperties": false,
 											"properties": {
+												"bom-ref": {},
 												"type": {},
 												"name": {},
 												"description": {},
@@ -123,19 +168,32 @@
 										"items": {
 											"type": "object",
 											"unevaluatedProperties": false,
+											"$comment": "変更の意味は resolves、機械可読な差分は diff。どちらか一方は必須(docs/package.md 参照)",
+											"anyOf": [
+												{ "required": ["diff"] },
+												{
+													"required": ["resolves"],
+													"properties": { "resolves": { "minItems": 1 } }
+												}
+											],
 											"properties": {
 												"type": {},
-												"resolves": {
-													"type": "array",
-													"items": {
-														"type": "object",
-														"unevaluatedProperties": false,
-														"properties": {
-															"type": {},
-															"description": {}
+												"diff": {
+													"type": "object",
+													"unevaluatedProperties": false,
+													"properties": {
+														"url": {},
+														"text": {
+															"type": "object",
+															"unevaluatedProperties": false,
+															"properties": {
+																"contentType": {},
+																"content": {}
+															}
 														}
 													}
-												}
+												},
+												"resolves": { "type": "array", "items": { "$ref": "#/$defs/issue" } }
 											}
 										}
 									}

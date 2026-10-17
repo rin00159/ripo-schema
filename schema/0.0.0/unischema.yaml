@@ -6,35 +6,42 @@
 #     layout    ディレクトリ構成のみ。ファイル内容の情報は持たない
 #     identity  パッケージの同定情報。package.json とその拡張(package.cdx.json)が担う
 #     academic  研究・学術利用のための情報
+#   担当範囲の書き方:
+#     「正本:」  そのファイルが正本(owner)となる情報項目を列挙する。1つの情報項目の正本は1ファイルのみ。
+#     「写し:」  正本を他ファイルに持つが、ツール互換などの理由でこのファイルにも書く項目。
+#                値は正本と常に一致させる。食い違いは正本側を正とする。
+#     「持たない:」意味的にこのファイルの責務ではない情報。他ファイルに書くこと。
 #   所有の原則:
 #     - 情報項目の正本(owner)は1ファイルのみ。
-#     - 他ファイルで必要な値は、参照する側のファイルの schema にポインタで書く。値は複製しない。
+#     - 写しは、正本の複製であることを明示した場合に限り許す。写しは schema の pointer で正本を指す。
+#     - 他ファイルで必要な値で、写しを許していないものは、参照する側の schema にポインタで書く。値は複製しない。
+#   整合性の検証(写しが正本と一致しているかの機械検証)は仕様未確定。ツールは未実装。
 # priority:
-#   情報を割り当てる優先度。
-#   新しくパッケージに関する情報を構造化して配置したくなった時に、
-#   小さい値から順に配置先を検討する。
+#   情報項目を置く場所を決めるときの、検討順序。小さい値から順に検討する。
+#   各ファイルの記述箇所は排他的で、同じ情報項目が複数のファイルに書けてしまう場合に、
+#   どのファイルに書くかを決めるために使う(「どの値が勝つか」の優先順位ではない)。
 #   ただし、構造化・普及 を満たす既存の定義(CycloneDX, SPDX, codemeta など)が
 #   該当する情報を持つ場合は、priority より既存の定義を優先する。
 #
 contents:
   - name: DIRDESC.yaml
-    position: "layout: パッケージのディレクトリ構成と各エントリの配置目的を宣言する"
+    position: "layout: 正本=パッケージのディレクトリ構成と各エントリの配置目的。持たない=ファイルの中身(名前・版・ライセンス等)に関する情報"
     priority: 0
 
   - name: package.json
-    position: "identity: パッケージの基本情報(名前・版・説明・リポジトリ・エントリポイント)。license は正本を package.cdx.json に持ち、ここでは参照する"
+    position: "identity: 正本=パッケージ名・版・説明・著者・リポジトリ/homepage/bugs・エントリポイント・配布対象(files)・公開設定・キーワード。写し=license(正本は package.cdx.json の自パッケージ licenses。package.json を読む多数のツール向けに SPDX 式の文字列で書く)。持たない=構造化ライセンス・派生元・パッチ・準拠仕様・上流コンポーネント(→ package.cdx.json)、引用・資金・人物識別子(→ codemeta.json)"
     priority: 1
     schema: {
       "/license": {"file": "package.cdx.json", "pointer": "/metadata/component/licenses"}
     }
 
   - name: package.cdx.json
-    position: "identity: package.json の拡張。自パッケージの構造化ライセンスの正本、派生元、ファイル単位の構成、適用したパッチ、準拠仕様の明記、上流コンポーネントの情報を持つ"
+    position: "identity: 正本=自パッケージの構造化ライセンス、派生元(pedigree.ancestors)、ファイル単位の構成(components)、適用したパッチ(pedigree.patches。意味的な差分は resolves、機械可読な差分は diff)、リリースノート(releaseNotes)、準拠仕様(definitions.standards)、上流コンポーネント。写し=metadata.component.name(正本は package.json の name)。持たない=版・説明・著者・リポジトリURL(→ package.json)、引用・資金・人物識別子(→ codemeta.json)"
     priority: 2
     schema: {
       "/metadata/component/name": {"file": "package.json", "pointer": "/name"}
     }
 
   - name: codemeta.json
-    position: "academic: 研究成果としての引用・資金・人物識別子・学術検索での発見可能性。同定情報は package.json を参照する"
+    position: "academic: 正本=研究成果としての引用・資金・人物識別子・学術検索での発見可能性。持たない=同定情報(名前・版・ライセンス等。package.json / package.cdx.json を参照する)"
     priority: 3

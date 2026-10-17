@@ -30,14 +30,14 @@ or
 package.cdx.json::Component.pedigree.patches[number]
 がどの
 package.cdx.json::Component.pedigree.ancestors[number]
-に対しての操作かは機械的に判断がつかない。
+に対しての操作かは、標準のプロパティでは機械的に判断がつかない。
+(CycloneDX の patch は ancestor を参照するプロパティを持たず、vendor schema は `additionalProperties:false` のため拡張プロパティも置けない。)
 
-ancestor側は`bom-ref`で受け入れる準備があるが
-patcheの制約が強く、`ancestor`からの参照も`patcheのindex参照`以外の方法は困難。idの付与も現実的ではない。
-・無理やり標準のプロパティで解決しようとするとセオリーから崩れたデータになってしまう。
-
-現実的なプランは`patches`へ拡張プロパティを追加。
-なおプロパティが無視されても順当な情報の欠落のみなので安全
+決定(現時点):
+・拡張プロパティ(`ref` など)は**追加しない**。標準の範囲だけで運用する。
+・必要なのは「意味的にどんな差分か(`resolves`)」であり、「どの ancestor への差分か」ではない。
+・加えて可能なら「機械可読な差分(`diff`:JSON Patch など)」を記す。
+・ancestor が1つなら対応は自明。複数 ancestor で対応が必要になった時点で、改めて方針を決める。
 ### examples
 
 ```json example
@@ -97,23 +97,24 @@ patcheの制約が強く、`ancestor`からの参照も`patcheのindex参照`以
 //# patches/openmath.json-patch.json
 [{"op":"remove","path":"/…/exclusiveMaximum"},{"op":"remove","path":"/…/exclusiveMinimum"}]
 ```
-```json:patch jsonpatchファイル参照+patcheから関わるpatcheを指定
+```json:patch ancestor を bom-ref で識別しつつ、jsonpatchファイル参照
 "pedigree": {
 	"ancestors": [
 		{
-			"bom-ref": "openmath.json"
+			"bom-ref": "openmath.json",
+			"type": "file",
+			"name": "src/schema/openmath.json"
 		}
 	],
 	"patches": [
 		{
 			"type": "unofficial",
-			"diff": { "url": "patches/openmath.json-patch.json" },
-			"ref": "ancestor:openmath.json"
+			"diff": { "url": "patches/openmath.json-patch.json" }
 		}
 	]
 }
 ```
-//"ref"のみ拡張プロパティなので注意
+//patch → ancestor の対応付けは行わない(上記「決定」参照)。
 
 ```json:patch jsonpatchファイル保持
 "patches": [
