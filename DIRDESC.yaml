@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rin00159/directory-jsonschema/refs/heads/main/schema/0.0.0/directory.schema.st.json
 allOf:
-  - $ref: where is schema//fix
-
+  - $ref: https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/DIRDESC.define.yaml
 contents:
   - type: directory
     name: docs
