@@ -27,6 +27,7 @@
 		"README.md",
 		"package.json",
 		"DIRDESC.yaml",
-		"src"
+		"src",
+		"schema"
 	]
 }

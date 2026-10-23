@@ -1,16 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rin00159/directory-jsonschema/refs/heads/main/schema/0.0.0/directory.schema.st.json
+allOf:
+  - $ref: where is schema//fix
+
 contents:
   - type: directory
     name: docs
   - type: directory
     name: examples
     description: これら example-json.json は作成が必須ではないが作るのが望ましい
-  - type: directory
-    name: src
-    contents:
-      - type: file
-        name: DIRDESC.define.yaml
-        description: "リポジトリが制約する、プロジェクトのディレクトリ構造"
   - type: directory
     name: schema
     contents:
@@ -19,7 +16,7 @@ contents:
         description: ベンダーからinstallしたままのschema定義
       - type: directory
         name: 
-          pattern: "^(?<major>\\d+),(?<minor>\\d+),(?<patch>\\d+)$"
+          pattern: "^(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)$"
         contents:
           - type: directory
             name: with-ripo-links
@@ -39,3 +36,6 @@ contents:
           - type: file
             name: package.schema.json
             description: ディレクトリスキーマで利用される`package.json`のJSONSchema。特定のプロパティを必須に資する目的で設定
+          - type: file
+            name: DIRDESC.define.yaml
+            description: "リポジトリが制約する、プロジェクトのディレクトリ構造"

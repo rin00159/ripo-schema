@@ -43,7 +43,7 @@ items:
       #fix 具体的にサポートするプロパティを決めてない。
       description: 学術利用のための補足情報
       data:
-        format: json
+        format: yaml
         containsProperties: {
           "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/codemeta.schema.json"
         }
