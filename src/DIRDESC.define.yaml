@@ -9,7 +9,7 @@ contents:
     data:
       format: json
       containsProperties: {
-        "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/withRipoLinks/package.schema.json",
+        "$schema": "https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/with-ripo-links/package.schema.json",
       }
   - type: file
     name: README.md

@@ -22,7 +22,7 @@ contents:
           pattern: "^(?<major>\\d+),(?<minor>\\d+),(?<patch>\\d+)$"
         contents:
           - type: directory
-            name: withRipoLinks
+            name: with-ripo-links
             contents:
               - type: file
                 name: package.schema.json
