@@ -9,7 +9,8 @@
 		},
 		"version": {
 			"type": "string",
-			"pattern": "^\\d+\\.\\d+\\.\\d+$"
+			"description": "Semantic Versioning (SemVer 2.0.0) 形式のバージョン文字列。プレリリース（例: 1.0.0-beta.1）およびビルドメタデータに対応。",
+			"pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
 		},
 		"description": {
 			"type": "string"

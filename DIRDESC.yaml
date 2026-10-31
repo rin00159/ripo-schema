@@ -3,11 +3,6 @@ allOf:
   - $ref: https://raw.githubusercontent.com/rin00159/ripo-schema/refs/heads/main/schema/0.0.0/DIRDESC.define.yaml
 contents:
   - type: directory
-    name: docs
-  - type: directory
-    name: examples
-    description: これら example-json.json は作成が必須ではないが作るのが望ましい
-  - type: directory
     name: schema
     contents:
       - type: directory

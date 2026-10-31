@@ -17,17 +17,19 @@
 		"access": "public"
 	},
 	"keywords": [
-		"math//fix プロパティ未設定",
-		"openmath",
-		"json",
-		"jsonschema"
+		"repository-structure",
+		"directory-schema",
+		"json-schema",
+		"jsonschema",
+		"cyclonedx",
+		"codemeta",
+		"metadata"
 	],
 	"files": [
 		"LICENSE",
 		"README.md",
 		"package.json",
 		"DIRDESC.yaml",
-		"src",
 		"schema"
 	]
 }
